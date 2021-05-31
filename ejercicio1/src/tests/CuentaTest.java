@@ -21,9 +21,9 @@ class CuentaTest {
 	}
 
 	@Test
-	void testIngresarDouble() throws Exception {
+	void testIngresarDouble()  {
 		try {
-		c1.ingresar("concept", 100);
+		c1.ingresar(100);
 		assertEquals(100,c1.getSaldo());
 		}
 		catch(Exception e) {
@@ -33,17 +33,54 @@ class CuentaTest {
 
 	@Test
 	void testRetirarDouble() {
-		fail("Not yet implemented");
+		try {
+			c1.ingresar(100);
+			c1.retirar(50);
+			assertEquals(50,c1.getSaldo());
+		}
+		catch(Exception e) {
+			
+		}
+	}
+	@Test
+	void testRetirarDoubleSiNoHay() {
+		try {
+			c1.retirar(50);
+			fail("Se deberia lanzar exception");
+		}
+		catch(Exception e) {
+			
+		}
 	}
 
 	@Test
 	void testIngresarStringDouble() {
-		fail("Not yet implemented");
+		try {
+			c1.ingresar("concept", 100);
+			assertEquals(100,c1.getSaldo());
+		}
+		catch(Exception e) {
+			
+		}
+	}
+	@Test
+	void testIngresarStringDoubleNegativo() {
+		try {
+			c1.ingresar("concept", -100);
+			fail("Debe saltar exception");
+		}
+		catch(Exception e) {
+			
+		}
 	}
 
 	@Test
 	void testRetirarStringDouble() {
-		fail("Not yet implemented");
+		try {
+			c1.ingresar(100);
+			c1.retirar("concept",50);
+		}catch(Exception e) {
+			
+		}
 	}
-
 }
