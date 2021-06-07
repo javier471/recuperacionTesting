@@ -13,7 +13,7 @@ class BarcoTest {
 	
 	@BeforeEach
 	public void init() {
-		b1=new Barco("78","Seat","Barco3","Paco", 10);
+		b1=new Barco("78","Seat","Barco3","Paco", 4);
 	}
 	
 	@AfterEach
@@ -26,8 +26,28 @@ class BarcoTest {
 		assertEquals(0,b1.getCargaActual());
 	}
 	@Test
-	void testCargaContenedor() {
-		fail("Not yet implemented");
+	void testCargaContenedorTrue() {
+		try {
+			Contenedor c1=new Contenedor("Sevilla","Madrid",440,"DHL");
+			assertTrue(b1.cargaContenedor(c1));
+		}catch(Exception e) {
+			fail("No deberia lanzar exception");
+		}
+	}
+	
+	@Test
+	void testCargaContenedorFalse() {
+		try {
+			Contenedor c1=new Contenedor("Sevilla","Madrid",440,"DHL");
+			Contenedor c2=new Contenedor("Sevilla","Madrid",440,"DHL");
+
+			Barco b2=new Barco("87","BMW","Barco32","Pepe",1);
+			b2.cargaContenedor(c1);
+			b2.cargaContenedor(c2);
+			fail("Deberia haber lanzado exception");
+		}catch(Exception e) {
+			assertEquals("No caben más contenedores",e.getMessage());
+		}
 	}
 
 }
