@@ -13,22 +13,22 @@ class EnfermoVirusParametrizadoTests {
 
 	static Stream <Arguments> edad(){
 		return Stream.of(
-				Arguments.of(4),
-				Arguments.of(0),
-				Arguments.of(-1),
-				Arguments.of(12),
-				Arguments.of(14),
-				Arguments.of(17),
-				Arguments.of(18)
+				Arguments.of(4,"niño"),
+				Arguments.of(0,"niño"),
+				Arguments.of(-1,"niño"),
+				Arguments.of(12,"niño"),
+				Arguments.of(14,"adolescente"),
+				Arguments.of(17,"adolescente"),
+				Arguments.of(18,"adulto")
 				);				
 				
 	}
 	
 	@ParameterizedTest
 	@MethodSource("edad")
-	void TestEdad(int anno) {
-		EnfermoVirus e1=new EnfermoVirus("Pepe","Perez",20);
-		assertEquals(e1.rangoEdad(),edad());
+	void TestEdad(int anno,String resul) {
+		EnfermoVirus e1=new EnfermoVirus("Pepe","Perez",anno);
+		assertEquals(e1.rangoEdad(),resul);
 	}
 	
 }
