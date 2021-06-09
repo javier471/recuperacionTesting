@@ -25,7 +25,6 @@ class TestParametrizadoEmpleado {
 	void TestPlus(int edad,boolean resul,int cantidad) {
 		Empleado e1=new Empleado("Paco","Lopez",edad,1000);
 		assertEquals(e1.plus(500),resul);
-		assertEquals(e1.plus(500),cantidad);
 	}
 	
 	static Stream <Arguments> equals(){
