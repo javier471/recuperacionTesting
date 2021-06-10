@@ -13,21 +13,21 @@ class IndiceMasaCorporalTest {
 
 	static Stream <Arguments> imc(){
 		return Stream.of(
-				Arguments.of("17","Tienes que engordar"),
-				Arguments.of("18","Muy bien"),
-				Arguments.of("25","Sobrepeso"),
-				Arguments.of("27","Sobrepeso")			
+				Arguments.of(80,175,"Sobrepeso"),
+				Arguments.of(90,170,"Sobrepeso"),
+				Arguments.of(40,180,"Tienes que engordar"),
+				Arguments.of(70,180,"Muy bien")			
 				);
 	}
 	
 	@ParameterizedTest
 	@MethodSource("imc")
-	void TestIndiceMasaCorporal(String peso,String resul) {
+	void TestIndiceMasaCorporal(float peso,float altura,String resul) {
 		try {
-		IndiceMasaCorporal i1=new IndiceMasaCorporal(80,175);
+		IndiceMasaCorporal i1=new IndiceMasaCorporal(peso,altura);
 		assertEquals(i1.diagnostico(),resul);
 		}catch(Exception e) {
-			
+			fail("No deberia lanzar exception");
 		}
 	}
 	

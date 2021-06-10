@@ -64,8 +64,8 @@ class NumerosTest {
 		return Stream.of(
 				Arguments.of(1,10,11),
 				Arguments.of(1,7,8),
-				Arguments.of(3,10,13),
-				Arguments.of(3,7,10)
+				Arguments.of(0,10,10),
+				Arguments.of(3,-7,-4)
 				);
 		}	
 
