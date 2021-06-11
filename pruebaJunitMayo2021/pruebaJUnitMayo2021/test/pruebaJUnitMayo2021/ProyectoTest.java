@@ -17,7 +17,7 @@ class ProyectoTest {
 	@BeforeEach
 	public void init() {
 		try {
-		p1=new Proyecto("Proyect",LocalDate.of(2020,11,21),LocalDate.of(2020, 12, 14));
+		p1=new Proyecto("Proyect",LocalDate.now(),LocalDate.now().plusMonths(2));
 		}catch(Exception e) {
 			fail("No deberia lanzar exception");
 		}
@@ -31,9 +31,9 @@ class ProyectoTest {
 	@Test
 	void testAddTareaTrue() {
 		try {
-			p1.addTarea("Concept", LocalDate.of(2020, 11, 22), 4);
-			assertEquals("Task " + "Concept" + ", Fecha inicio=" + LocalDate.of(2020, 11, 22)
-					+ ", duración=" + 4 + ".En proceso",p1.toString());
+			p1.addTarea("Concept", LocalDate.now().plusDays(10), 4);
+			assertEquals("Proyecto Proyect con código 0. Fecha de comienzo "+LocalDate.now()+". Fecha final:"+LocalDate.now().plusMonths(2)+"\n" + 
+					"Task Concept, Fecha inicio="+LocalDate.now().plusDays(10)+", duración=4.En proceso\n",p1.toString());
 		}catch(Exception e) {
 			fail("No se deberia haber lanzado exception");
 		}
@@ -60,13 +60,28 @@ class ProyectoTest {
 	}
 	
 	@Test
-	void testDelTask() {
-		fail("Not yet implemented");
+	void testDelTaskTrue() {
+		try {
+			p1.addTarea("Concept", LocalDate.now().plusDays(10),4);
+			p1.delTask("Concept");
+			assertEquals("Proyecto Proyect con código 0. Fecha de comienzo 2021-06-11. Fecha final:2021-08-11\n" + 
+					"Task Concept, Fecha inicio=2021-06-21, duración=4.En proceso\n"
+					,p1.toString());
+			
+		}catch(Exception e) {
+			fail("No se deberia haber lanzado exception");
+		}
 	}
-
+	
 	@Test
 	void testEndTask() {
-		fail("Not yet implemented");
+		try {
+			p1.addTarea("Concept", LocalDate.of(2021, 11, 22), 4);
+			p1.endTask("Concept");
+			//assertEquals();
+		}catch(Exception e) {
+			
+		}
 	}
 
 }
